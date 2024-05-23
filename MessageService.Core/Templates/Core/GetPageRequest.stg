@@ -1,0 +1,19 @@
+main(model) ::= <<
+using Aeb.DigitalPlatform.Infrastructure;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Get$model.Entity.PluralName$Page : IRequest<PaginableContentModel<$model.Entity.Name$Model>\>
+{
+    public Get$model.Entity.PluralName$Page(int pageIndex, int pageSize)
+    {
+        PageIndex = pageIndex;
+        PageSize = pageSize;
+    }
+    public int PageIndex { get; set; }
+    public int PageSize { get; set; }
+}
+
+>>

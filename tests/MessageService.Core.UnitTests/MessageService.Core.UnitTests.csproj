@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <LangVersion>latest</LangVersion>
+    <CodeAnalysisRuleSet>.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>MessageService.Core.UnitTests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="coverlet.msbuild" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.console" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.reporters" Version="2.4.1" />
+    <PackageReference Include="Moq" Version="4.16.0" />
+    <PackageReference Include="AutoFixture" Version="4.13.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.13.0" />
+    <PackageReference Include="FluentAssertions" Version="6.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-reportgenerator-cli" Version="4.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MessageService.Core\MessageService.Core.csproj" />
+  </ItemGroup>
+
+</Project>

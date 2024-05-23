@@ -1,0 +1,64 @@
+main(model) ::= <<
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
+using $model.Solution.Namespace$.Core.Entities;
+using $model.Solution.Namespace$.Core.Infrastructure;
+using $model.Solution.Namespace$.Abstractions;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Repositories;
+
+/// <summary>
+/// $model.Entity.Name$ Repository interface
+/// </summary>
+public interface I$model.Entity.Name$Repository
+{
+    /// <summary>
+    /// Insert new record of $model.Entity.Name$
+    /// </summary>
+    /// <param name="$model.Entity.NameLower$"></param>
+    void Add$model.Entity.Name$($model.Entity.Name$ $model.Entity.NameLower$);
+
+    /// <summary>
+    /// Delete a record of $model.Entity.Name$
+    /// </summary>
+    /// <param name="$model.Entity.NameLower$"></param>
+    void Delete$model.Entity.Name$($model.Entity.Name$ $model.Entity.NameLower$);
+
+    /// <summary>
+    /// Update a record of $model.Entity.Name$
+    /// </summary>
+    /// <param name="$model.Entity.NameLower$"></param>
+    void Update$model.Entity.Name$($model.Entity.Name$ $model.Entity.NameLower$);
+
+    /// <summary>
+    /// Get a record of $model.Entity.Name$
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<$model.Entity.Name$> Get$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, CancellationToken cancellationToken = default);
+    
+    /// <summary>
+    /// Get $model.Entity.PluralName$ collection with pagination
+    /// </summary>
+    /// <param name="pageIndex"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>Requested page and total count</returns>
+    Task<(IEnumerable<$model.Entity.Name$>, int)> Get$model.Entity.PluralName$PageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Get $model.Entity.PluralName$ collection
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<IEnumerable<$model.Entity.Name$>\> Get$model.Entity.PluralName$ListAsync(CancellationToken cancellationToken = default);
+}
+
+>>

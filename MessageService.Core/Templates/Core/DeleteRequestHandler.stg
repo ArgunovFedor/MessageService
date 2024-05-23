@@ -1,0 +1,59 @@
+main(model) ::= <<
+using System.Threading;
+using System.Threading.Tasks;
+using $model.Solution.Namespace$.Core.Repositories;
+using Aeb.DigitalPlatform.Infrastructure;
+using Aeb.UnitOfWork.Abstractions;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Delete$model.Entity.Name$Handler : BaseRequestHandler<Delete$model.Entity.Name$>
+{
+$if(model.Entity.Properties.Data)$
+    private readonly I$model.Entity.Name$Repository _$model.Entity.NameLower$Repository;
+    private readonly IUnitOfWork _unitOfWork;
+    public Delete$model.Entity.Name$Handler(
+        I$model.Entity.Name$Repository $model.Entity.NameLower$Repository,
+        IUnitOfWork unitOfWork)
+    {
+        _$model.Entity.NameLower$Repository = $model.Entity.NameLower$Repository;
+        _unitOfWork = unitOfWork;
+    }
+$else$
+    private readonly IUnitOfWork _unitOfWork;
+
+    public Delete$model.Entity.Name$Handler(
+        IUnitOfWork unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+    }
+
+$endif$
+
+$if(model.Entity.Properties.Data)$
+    public override async Task<Unit> HandleAsync(Delete$model.Entity.Name$ request, CancellationToken cancellationToken)
+    {              
+        var $model.Entity.NameLower$ = await _$model.Entity.NameLower$Repository
+            .Get$model.Entity.Name$Async(request.$model.Entity.IdField.Name$, cancellationToken);
+
+        if ($model.Entity.NameLower$ == null)
+        {
+            throw new ServiceException("NOT_FOUND"); 
+        }
+
+        _$model.Entity.NameLower$Repository.Delete$model.Entity.Name$($model.Entity.NameLower$);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return Unit.Value;
+    }
+$else$
+    public override async Task<Unit> HandleAsync(Delete$model.Entity.Name$ request, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+$endif$
+
+}
+
+>>

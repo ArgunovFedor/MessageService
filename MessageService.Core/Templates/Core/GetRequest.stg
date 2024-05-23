@@ -1,0 +1,22 @@
+﻿main(model) ::= <<
+using System;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Get$model.Entity.Name$ : IRequest<$model.Entity.Name$Model>
+{
+    public $model.Entity.IdField.TypeName$ $model.Entity.IdField.Name$ { get; set; }
+
+    public Get$model.Entity.Name$()
+    {
+    }
+
+    public Get$model.Entity.Name$($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$)
+    {
+        $model.Entity.IdField.Name$ = $model.Entity.IdField.NameLower$;
+    }
+}
+
+>>

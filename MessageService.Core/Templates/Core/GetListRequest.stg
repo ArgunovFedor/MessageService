@@ -1,0 +1,14 @@
+main(model) ::= <<
+using System.Collections.Generic;
+using $model.Solution.Namespace$.Core.Infrastructure;
+using $model.Solution.Namespace$.Abstractions;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Get$model.Entity.PluralName$ : IRequest<IEnumerable<$model.Entity.Name$Model>\>
+{
+}
+
+>>

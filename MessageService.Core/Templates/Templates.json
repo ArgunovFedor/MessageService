@@ -1,0 +1,374 @@
+[
+  {
+    "filePath": "*.Core\\Entities",
+    "fileName": "{Name}.cs",
+    "templatePath": "Core\\Entity.stg",
+    "types": [
+      "Entity",
+      "AbstractEntity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Data",
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Create{Name}.cs",
+    "templatePath": "Core\\CreateRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Create{Name}Handler.cs",
+    "templatePath": "Core\\CreateRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Create{Name}Validator.cs",
+    "templatePath": "Core\\CreateRequestValidator.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Delete{Name}.cs",
+    "templatePath": "Core\\DeleteRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Delete{Name}Handler.cs",
+    "templatePath": "Core\\DeleteRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Get{Name}.cs",
+    "templatePath": "Core\\GetRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Get{Name}Handler.cs",
+    "templatePath": "Core\\GetRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Get{PluralName}.cs",
+    "templatePath": "Core\\GetListRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Get{PluralName}Handler.cs",
+    "templatePath": "Core\\GetListRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Get{PluralName}Page.cs",
+    "templatePath": "Core\\GetPageRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Get{PluralName}PageHandler.cs",
+    "templatePath": "Core\\GetPageRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Update{Name}.cs",
+    "templatePath": "Core\\UpdateRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Update{Name}Handler.cs",
+    "templatePath": "Core\\UpdateRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Update{Name}Validator.cs",
+    "templatePath": "Core\\UpdateRequestValidator.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Patch{Name}.cs",
+    "templatePath": "Core\\PatchRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Requests",
+    "fileName": "{PluralName}\\Patch{Name}Handler.cs",
+    "templatePath": "Core\\PatchRequestHandler.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\AutoMapper",
+    "fileName": "{Name}Profile.cs",
+    "templatePath": "Core\\AutoMapperProfile.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Core\\Repositories",
+    "fileName": "I{Name}Repository.cs",
+    "templatePath": "Core\\RepositoryInterface.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Data\\Repositories",
+    "fileName": "{Name}Repository.cs",
+    "templatePath": "Data\\Repository.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": [
+      "Core"
+    ]
+  },
+  {
+    "filePath": "*.Data\\Configurations",
+    "fileName": "{Name}Configuration.cs",
+    "templatePath": "Data\\Configuration.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Web\\Controllers",
+    "fileName": "{Name}Controller.cs",
+    "templatePath": "Web\\Controller.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Connector",
+    "fileName": "I{Name}RestClient.cs",
+    "templatePath": "Connector\\EntityRestClient.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Connector",
+    "fileName": "ServiceCollectionExtensions.cs",
+    "templatePath": "Connector\\RestClientRegistration.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": "// REGISTER CLIENTS HERE",
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{Name}.cs",
+    "templatePath": "Abstractions\\Enum.stg",
+    "types": [
+      "Enum"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\{Name}Model.cs",
+    "templatePath": "Abstractions\\Model.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\{Name}ShortModel.cs",
+    "templatePath": "Abstractions\\ShortModel.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\{Name}Filter.cs",
+    "templatePath": "Abstractions\\Filter.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\Create{Name}.cs",
+    "templatePath": "Abstractions\\CreateRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\Delete{Name}.cs",
+    "templatePath": "Abstractions\\DeleteRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\Get{Name}.cs",
+    "templatePath": "Abstractions\\GetRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\Get{PluralName}.cs",
+    "templatePath": "Abstractions\\GetListRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  },
+  {
+    "filePath": "*.Abstractions",
+    "fileName": "{PluralName}\\Update{Name}.cs",
+    "templatePath": "Abstractions\\UpdateRequest.stg",
+    "types": [
+      "Entity"
+    ],
+    "insertAfter": null,
+    "targets": []
+  }
+]

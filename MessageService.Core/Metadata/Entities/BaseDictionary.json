@@ -1,0 +1,22 @@
+{
+  "IsAbstract": true,
+  "BaseEntityId": "feedc0ff-ee00-0000-be00-000000000000",
+  "Fields": [
+    {
+      "IsSystem": false,
+      "Type": "String",
+      "Size": 100,
+      "EntityId": null,
+      "IsRequired": false,
+      "EnumId": null,
+      "Id": "feedc0ff-ee00-0000-bd00-000000000001",
+      "Name": "Name",
+      "DisplayName": null,
+      "Description": null
+    }
+  ],
+  "Id": "feedc0ff-ee00-0000-bd00-000000000000",
+  "Name": "BaseDictionary",
+  "DisplayName": null,
+  "Description": null
+}

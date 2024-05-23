@@ -1,0 +1,30 @@
+﻿main(model) ::= <<
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.JsonPatch;
+using MediatR;
+using $model.Solution.Namespace$.Core.Entities;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Patch$model.Entity.Name$ : IRequest<$model.Entity.Name$Model>
+{
+    public Patch$model.Entity.Name$()
+    {
+    }
+    
+    public Patch$model.Entity.Name$($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, JsonPatchDocument<$model.Entity.Name$Model> content)
+    {
+        $model.Entity.IdField.Name$ = $model.Entity.IdField.NameLower$;
+        Content = content;
+    }
+    
+    public $model.Entity.IdField.TypeName$ $model.Entity.IdField.Name$ { get; set; }
+
+    public JsonPatchDocument<$model.Entity.Name$Model> Content { get; set; }
+}
+
+>>

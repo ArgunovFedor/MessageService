@@ -1,0 +1,34 @@
+main(model) ::= <<
+using System;
+using System.Threading.Tasks;
+using Aeb.DigitalPlatform.Infrastructure;
+using Refit;
+using Microsoft.AspNetCore.JsonPatch;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using $model.Solution.Namespace$.Abstractions;
+
+namespace $model.Solution.Namespace$.Connector;
+
+[Headers("Content-Type: application/json")]
+public interface I$model.Entity.Name$RestClient
+{
+    [Patch("/api/$model.Entity.Name$")]
+    Task<$model.Entity.Name$Model> Patch$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, JsonPatchDocument<$model.Entity.Name$Model> content);
+
+    [Get("/api/$model.Entity.Name$")]
+    Task<PaginableContentModel<$model.Entity.Name$Model>\> Get$model.Entity.PluralName$Async(Get$model.Entity.PluralName$Model get$model.Entity.PluralName$);
+
+    [Get("/api/$model.Entity.Name$/{$model.Entity.IdField.NameLower$}")]
+    Task<$model.Entity.Name$Model> Get$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, Get$model.Entity.Name$Model get$model.Entity.Name$);
+
+    [Put("/api/$model.Entity.Name$/{$model.Entity.IdField.NameLower$}")]
+    Task<$model.Entity.Name$Model> Update$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, Update$model.Entity.Name$Model update$model.Entity.Name$);
+
+    [Post("/api/$model.Entity.Name$")]
+    Task<$model.Entity.Name$Model> Create$model.Entity.Name$Async(Create$model.Entity.Name$Model create$model.Entity.Name$);
+
+    [Delete("/api/$model.Entity.Name$/{$model.Entity.IdField.NameLower$}")]
+    Task Delete$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$);
+}
+
+>>

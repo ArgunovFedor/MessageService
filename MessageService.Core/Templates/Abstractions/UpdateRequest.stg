@@ -1,0 +1,31 @@
+main(model) ::= <<
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+
+namespace $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+
+public class Update$model.Entity.Name$Model
+{
+    public $model.Entity.IdField.TypeName$ $model.Entity.IdField.Name$ { get; set; }
+
+$model.Entity.AllFields:field(); separator="\n"$
+}
+
+>>
+
+field(field) ::= <<
+$field:(field.Template)()$
+>>
+
+Type(field) ::= <<
+    public $field.TypeName$ $field.Name$ { get; set; }
+>>
+
+Entity(field) ::= <<
+    public $field.EntityIdTypeName$ $field.Name$$field.Entity.IdField.Name$ { get; set; }
+>>
+
+Enum(field) ::= <<
+    public $field.Enum.Name$$if(!field.IsRequired)$?$endif$ $field.Name$ { get; set; }
+>>

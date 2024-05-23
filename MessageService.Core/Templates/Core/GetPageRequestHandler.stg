@@ -1,0 +1,56 @@
+main(model) ::= <<
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Aeb.DigitalPlatform.Infrastructure;
+using AutoMapper;
+using $model.Solution.Namespace$.Core.Repositories;
+using $model.Solution.Namespace$.Core.Entities;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Get$model.Entity.PluralName$PageHandler : BaseRequestHandler<Get$model.Entity.PluralName$Page, PaginableContentModel<$model.Entity.Name$Model>\>
+{
+$if(model.Entity.Properties.Data)$
+    private readonly I$model.Entity.Name$Repository _$model.Entity.NameLower$Repository;
+    private readonly IMapper _mapper;
+
+    public Get$model.Entity.PluralName$PageHandler(
+        I$model.Entity.Name$Repository $model.Entity.NameLower$Repository,
+        IMapper mapper)
+    {
+        _$model.Entity.NameLower$Repository = $model.Entity.NameLower$Repository;
+        _mapper = mapper;
+    }
+
+$else$
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
+
+    public Get$model.Entity.PluralName$Handler(
+        IUnitOfWork unitOfWork,
+        IMapper mapper)
+    {
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+    }
+
+$endif$
+
+$if(model.Entity.Properties.Data)$
+    public override async Task<PaginableContentModel<$model.Entity.Name$Model>\> HandleAsync(Get$model.Entity.PluralName$Page request, CancellationToken cancellationToken)
+    {               
+        var (items, totalCount) = await _$model.Entity.NameLower$Repository.Get$model.Entity.PluralName$PageAsync(request.PageIndex, request.PageSize, cancellationToken);
+        return new PaginableContentModel<$model.Entity.Name$Model>(items.Select(_mapper.Map<$model.Entity.Name$, $model.Entity.Name$Model>), totalCount, request.PageIndex);
+    }
+$else$
+    public override async Task<PaginableContentModel<$model.Entity.Name$Model>\> HandleAsync(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+$endif$
+}
+
+>>

@@ -1,0 +1,11 @@
+﻿main(model) ::= <<
+using System;
+
+namespace $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+
+public class Delete$model.Entity.Name$Model
+{
+    public $model.Entity.IdField.TypeName$ $model.Entity.IdField.Name$ { get; set; }
+}
+
+>>

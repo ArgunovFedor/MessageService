@@ -1,0 +1,82 @@
+main(model) ::= <<
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using $model.Solution.Namespace$.Core.Entities;
+using $model.Solution.Namespace$.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace $model.Solution.Namespace$.Data.Repositories;
+
+/// <inheritdoc/>
+public class $model.Entity.Name$Repository : I$model.Entity.Name$Repository
+{
+    private readonly DbSet<$model.Entity.Name$> _dbSet;
+
+    /// <summary>
+    /// Default constructor fo DI
+    /// </summary>
+    /// <param name="dataContext"></param>
+    public $model.Entity.Name$Repository(DataContext dataContext)
+    {
+        _dbSet = dataContext.Set<$model.Entity.Name$>();
+    }
+
+    /// <inheritdoc/>
+    public void Add$model.Entity.Name$($model.Entity.Name$ $model.Entity.NameLower$)
+    {
+        _dbSet.Add($model.Entity.NameLower$);
+    }
+
+    /// <inheritdoc/>
+    public void Delete$model.Entity.Name$($model.Entity.Name$ $model.Entity.NameLower$)
+    {
+        _dbSet.Remove($model.Entity.NameLower$);
+    }
+
+    /// <inheritdoc/>
+    public void Update$model.Entity.Name$($model.Entity.Name$ $model.Entity.NameLower$)
+    {
+        _dbSet.Update($model.Entity.NameLower$);
+    }
+
+    /// <inheritdoc/>
+    public async Task<$model.Entity.Name$> Get$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, CancellationToken cancellationToken = default)
+    {
+        var $model.Entity.NameLower$ = await _dbSet
+            $model.Entity.EntityFields:include(); separator=""$
+            .FirstOrDefaultAsync(e => e.$model.Entity.IdField.Name$ == $model.Entity.IdField.NameLower$, cancellationToken);
+        return $model.Entity.NameLower$;
+    }
+
+    /// <inheritdoc/>
+    public async Task<(IEnumerable<$model.Entity.Name$>, int)> Get$model.Entity.PluralName$PageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
+    {
+        var totalCount = await _dbSet.CountAsync(cancellationToken);
+        var $model.Entity.PluralNameLower$ = await _dbSet
+            $model.Entity.EntityFields:include(); separator=""$
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+        return ($model.Entity.PluralNameLower$, totalCount);
+    }
+
+    /// <inheritdoc/>
+    public async Task<IEnumerable<$model.Entity.Name$>\> Get$model.Entity.PluralName$ListAsync(CancellationToken cancellationToken = default)
+    {
+        var $model.Entity.PluralNameLower$ = await _dbSet
+            $model.Entity.EntityFields:include(); separator=""$
+            .ToListAsync(cancellationToken);
+        return $model.Entity.PluralNameLower$;
+    }
+}
+
+>>
+
+include(field) ::= <<
+
+.Include(e => e.$field.Name$)
+>>

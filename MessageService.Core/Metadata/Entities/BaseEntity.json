@@ -1,0 +1,70 @@
+{
+  "IsAbstract": true,
+  "BaseEntityId": null,
+  "Fields": [
+    {
+      "IsSystem": true,
+      "Type": "Guid",
+      "Size": null,
+      "EntityId": null,
+      "IsRequired": true,
+      "EnumId": null,
+      "Id": "feedc0ff-ee00-0000-be00-000000000001",
+      "Name": "Id",
+      "DisplayName": null,
+      "Description": null
+    },
+    {
+      "IsSystem": false,
+      "Type": "DateTime",
+      "Size": null,
+      "EntityId": null,
+      "IsRequired": true,
+      "EnumId": null,
+      "Id": "feedc0ff-ee00-0000-be00-000000000002",
+      "Name": "CreatedOn",
+      "DisplayName": null,
+      "Description": null
+    },
+    {
+      "IsSystem": false,
+      "Type": "DateTime",
+      "Size": null,
+      "EntityId": null,
+      "IsRequired": true,
+      "EnumId": null,
+      "Id": "feedc0ff-ee00-0000-be00-000000000003",
+      "Name": "ModifiedOn",
+      "DisplayName": null,
+      "Description": null
+    },
+    {
+      "IsSystem": false,
+      "Type": "Guid",
+      "Size": null,
+      "EntityId": null,
+      "IsRequired": false,
+      "EnumId": null,
+      "Id": "feedc0ff-ee00-0000-be00-000000000004",
+      "Name": "CreatedBy",
+      "DisplayName": null,
+      "Description": null
+    },
+    {
+      "IsSystem": false,
+      "Type": "Guid",
+      "Size": null,
+      "EntityId": null,
+      "IsRequired": false,
+      "EnumId": null,
+      "Id": "feedc0ff-ee00-0000-be00-000000000005",
+      "Name": "ModifiedBy",
+      "DisplayName": null,
+      "Description": null
+    }
+  ],
+  "Id": "feedc0ff-ee00-0000-be00-000000000000",
+  "Name": "BaseEntity",
+  "DisplayName": null,
+  "Description": null
+}

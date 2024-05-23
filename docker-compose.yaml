@@ -1,0 +1,13 @@
+version: "2.2"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: MessageService.Web/Dockerfile        
+    postgres:
+      image: postgres:15
+    jaeger:
+        image: jaegertracing/all-in-one:1.45
+    rabbit:
+        image: masstransit/rabbitmq:3.11
+        hostname: "rabbit"

@@ -1,0 +1,203 @@
+main(model) ::= <<
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using $model.Solution.Namespace$.Core.Infrastructure;
+$if(model.Entity.Properties.Core)$
+using $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+$endif$
+using $model.Solution.Namespace$.Web.Infrastructure;
+using $model.Solution.Namespace$.Abstractions;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using Aeb.DigitalPlatform.Infrastructure;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+
+namespace $model.Solution.Namespace$.Web.Controllers;
+
+[ServiceFilter(typeof(ApiExceptionFilterAttribute))]
+[Authorize]
+[Route("api/$model.Entity.Name$")]
+public class $model.Entity.Name$Controller : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    public $model.Entity.Name$Controller(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+$if(model.Entity.Properties.Core)$
+    /// <summary>
+    /// Пропатчить запись `$model.Entity.DisplayName$` 
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <param name="content">JSON Patch document for $model.Entity.Name$Model</param>
+    /// <returns>Modified object</returns>
+    [HttpPatch("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Patch$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Patch$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, [FromBody] JsonPatchDocument<$model.Entity.Name$Model> content)
+    {
+        return await _mediator.Send(new Patch$model.Entity.Name$($model.Entity.IdField.NameLower$, content));
+    }
+
+    /// <summary>
+    /// Получить список записей `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <returns>List of $model.Entity.PluralName$</returns>
+    [HttpGet]
+    [SwaggerOperation("Get$model.Entity.PluralName$")]
+    public async Task<IEnumerable<$model.Entity.Name$Model>\> Get$model.Entity.PluralName$Async()
+    {
+        return await _mediator.Send(new Get$model.Entity.PluralName$());
+    }
+
+    /// <summary>
+    /// Получить список записей `$model.Entity.DisplayName$` с пагинацией
+    /// </summary>
+    /// <param name="pageIndex">Required page index</param>
+    /// <param name="pageSize">Page size</param>
+    /// <returns>List of $model.Entity.PluralName$</returns>
+    [HttpGet("page/{pageIndex}")]
+    [SwaggerOperation("Get$model.Entity.PluralName$Page")]
+    public async Task<PaginableContentModel<$model.Entity.Name$Model>\> Get$model.Entity.PluralName$Async(int pageIndex, int pageSize = 30)
+    {
+        return await _mediator.Send(new Get$model.Entity.PluralName$Page(pageIndex, pageSize));
+    }
+
+    /// <summary>
+    /// Получить запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <returns>$model.Entity.Name$Model object</returns>
+    [HttpGet("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Get$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Get$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$)
+    {
+        return await _mediator.Send(new Get$model.Entity.Name$($model.Entity.IdField.NameLower$));
+    }
+
+    /// <summary>
+    /// Обновить запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <param name="update$model.Entity.Name$">$model.Entity.Name$Model object</param>
+    /// <returns>Modified object</returns>
+    [HttpPut("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Update$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Update$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, [FromBody] Update$model.Entity.Name$ update$model.Entity.Name$)
+    {
+        if ($model.Entity.IdField.NameLower$ != update$model.Entity.Name$.$model.Entity.IdField.Name$)
+        {
+            throw new ServiceException("BAD_REQUEST");
+        }
+        return await _mediator.Send(update$model.Entity.Name$);
+    }
+
+    /// <summary>
+    /// Создать новую запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="create$model.Entity.Name$">$model.Entity.Name$Model object</param>
+    /// <returns>Created object</returns>
+    [HttpPost]
+    [SwaggerOperation("Create$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Create$model.Entity.Name$Async([FromBody] Create$model.Entity.Name$ create$model.Entity.Name$)
+    {
+        return await _mediator.Send(create$model.Entity.Name$);
+    }
+
+    /// <summary>
+    /// Удалить запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <returns></returns>
+    [HttpDelete("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Delete$model.Entity.Name$")]
+    public async Task<IActionResult> Delete$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$)
+    {
+        await _mediator.Send(new Delete$model.Entity.Name$($model.Entity.IdField.NameLower$));
+        return StatusCode(204);
+    }
+$else$
+    /// <summary>
+    /// Пропатчить запись `$model.Entity.DisplayName$` 
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <param name="content">JSON Patch document for $model.Entity.Name$Model</param>
+    /// <returns>Modified object</returns>
+    [HttpPatch("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Patch$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Patch$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, [FromBody] JsonPatchDocument<$model.Entity.Name$Model> content)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Получить список записей `$model.Entity.DisplayName$` с пагинацией
+    /// </summary>
+    /// <param name="get$model.Entity.PluralName$">Filter definition</param>
+    /// <returns>List of $model.Entity.PluralName$</returns>
+    [HttpGet]
+    [SwaggerOperation("Get$model.Entity.PluralName$")]
+    public async Task<PaginableContentModel<$model.Entity.Name$Model>\> Get$model.Entity.PluralName$Async([FromUri] Get$model.Entity.PluralName$ get$model.Entity.PluralName$)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Получить запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <returns>$model.Entity.Name$Model object</returns>
+    [HttpGet("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Get$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Get$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Обновить запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <param name="update$model.Entity.Name$">$model.Entity.Name$Model object</param>
+    /// <returns>Modified object</returns>
+    [HttpPut("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Update$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Update$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$, [FromBody] Update$model.Entity.Name$ update$model.Entity.Name$)
+    {
+        if ($model.Entity.IdField.NameLower$ != update$model.Entity.Name$.$model.Entity.IdField.Name$)
+        {
+            throw new ServiceException("BAD_REQUEST");
+        }
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Создать новую запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="create$model.Entity.Name$">$model.Entity.Name$Model object</param>
+    /// <returns>Created object</returns>
+    [HttpPost]
+    [SwaggerOperation("Create$model.Entity.Name$")]
+    public async Task<$model.Entity.Name$Model> Create$model.Entity.Name$Async([FromBody] Create$model.Entity.Name$ create$model.Entity.Name$)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Удалить запись `$model.Entity.DisplayName$`
+    /// </summary>
+    /// <param name="$model.Entity.IdField.NameLower$">Identifier</param>
+    /// <returns></returns>
+    [HttpDelete("{$model.Entity.IdField.NameLower$}")]
+    [SwaggerOperation("Delete$model.Entity.Name$")]
+    public async Task Delete$model.Entity.Name$Async($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$)
+    {
+        throw new NotImplementedException();
+    }$endif$
+}
+>>

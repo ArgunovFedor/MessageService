@@ -1,0 +1,19 @@
+main(model) ::= <<
+using System;
+using System.ComponentModel;
+
+namespace $model.Solution.Namespace$.Abstractions;
+
+public enum $model.Enum.Name$
+{
+$model.Enum.Values:enumValue(); separator=",\n"$
+}
+
+>>
+
+enumValue(value) ::= <<
+    /// <summary>
+    /// $value.DisplayNameOrName$
+    /// </summary>
+    $value.Name$$if(value.Value)$ = $value.Value$$endif$
+>>

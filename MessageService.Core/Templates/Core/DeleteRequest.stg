@@ -1,0 +1,21 @@
+﻿main(model) ::= <<
+using System;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Delete$model.Entity.Name$ : IRequest
+{
+    public $model.Entity.IdField.TypeName$ $model.Entity.IdField.Name$ { get; set; }
+
+    public Delete$model.Entity.Name$()
+    {
+    }
+
+    public Delete$model.Entity.Name$($model.Entity.IdField.TypeName$ $model.Entity.IdField.NameLower$)
+    {
+        $model.Entity.IdField.Name$ = $model.Entity.IdField.NameLower$;
+    }
+}
+
+>>

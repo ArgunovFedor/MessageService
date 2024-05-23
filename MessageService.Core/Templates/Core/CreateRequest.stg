@@ -1,0 +1,35 @@
+﻿main(model) ::= <<
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using $model.Solution.Namespace$.Abstractions;
+using $model.Solution.Namespace$.Core.Infrastructure;
+using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+using MediatR;
+
+namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
+
+public class Create$model.Entity.Name$ : IRequest<$model.Entity.Name$Model>
+{
+$model.Entity.AllFields:field(); separator="\n"$
+}
+
+>>
+
+field(field) ::= <<
+    [DisplayName("$field.DisplayName$")]
+$field:(field.Template)()$
+>>
+
+Type(field) ::= <<
+    public $field.TypeName$ $field.Name$ { get; set; }
+>>
+
+Entity(field) ::= <<
+    public $field.EntityIdTypeName$ $field.Name$$field.Entity.IdField.Name$ { get; set; }
+>>
+
+Enum(field) ::= <<
+    public $field.Enum.Name$$if(!field.IsRequired)$?$endif$ $field.Name$ { get; set; }
+>>

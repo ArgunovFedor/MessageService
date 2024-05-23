@@ -1,0 +1,31 @@
+﻿main(model) ::= <<
+using System;
+using System.Collections.Generic;
+
+namespace $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
+
+public class $model.Entity.Name$Model
+{
+$model.Entity.AllSystemFields:field(); separator="\n"$
+
+$model.Entity.AllFields:field(); separator="\n"$
+}
+
+>>
+
+field(field) ::= <<
+$field:(field.Template)()$
+>>
+
+Type(field) ::= <<
+    public $field.TypeName$ $field.Name$ { get; set; }
+>>
+
+Entity(field) ::= <<
+    public $field.EntityIdTypeName$ $field.Name$$field.Entity.IdField.Name$ { get; set; }
+    public $field.Entity.PluralName$.$field.Entity.Name$ShortModel $field.Name$ { get; set; }
+>>
+
+Enum(field) ::= <<
+    public $field.Enum.Name$$if(!field.IsRequired)$?$endif$ $field.Name$ { get; set; }
+>>

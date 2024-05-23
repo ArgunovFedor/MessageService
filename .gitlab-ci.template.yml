@@ -1,0 +1,4 @@
+include:
+  - project: 'digital-platform-core/gitLab-ci-components'
+    file:
+      - 'aebmicroservice.gitlab-ci.yml'
