@@ -1,3 +1,0 @@
-﻿main(model) ::= <<
-        httpClientBuilder.AddTypedClient(RestService.For<I$model.Entity.Name$RestClient>);
->>

@@ -262,26 +262,6 @@
     "targets": []
   },
   {
-    "filePath": "*.Connector",
-    "fileName": "I{Name}RestClient.cs",
-    "templatePath": "Connector\\EntityRestClient.stg",
-    "types": [
-      "Entity"
-    ],
-    "insertAfter": null,
-    "targets": []
-  },
-  {
-    "filePath": "*.Connector",
-    "fileName": "ServiceCollectionExtensions.cs",
-    "templatePath": "Connector\\RestClientRegistration.stg",
-    "types": [
-      "Entity"
-    ],
-    "insertAfter": "// REGISTER CLIENTS HERE",
-    "targets": []
-  },
-  {
     "filePath": "*.Abstractions",
     "fileName": "{Name}.cs",
     "templatePath": "Abstractions\\Enum.stg",

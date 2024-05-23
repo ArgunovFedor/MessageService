@@ -1,0 +1,36 @@
+﻿{
+  "id": "8a93e7b7-f33c-41db-bae2-732ba625e57f",
+  "name": "Message",
+  "pluralName": "Messages",
+  "displayName": "Сообщение",
+  "pluralDisplayName": "Сообщения",
+  "isAbstract": false,
+  "baseEntityId": "feedc0ff-ee00-0000-be00-000000000000",
+  "fields": [
+    {
+      "id": "23fd1e29-912a-4bba-8418-8a0cca34a372",
+      "name": "Text",
+      "displayName": "Texts",
+      "type": "String",
+      "size": 128,
+      "entityId": null,
+      "isRequired": true,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
+    },
+    {
+      "id": "d3afecbf-6f2a-4b2d-b2e6-d3b4293ee294",
+      "name": "Number",
+      "displayName": "Номер сообщения",
+      "type": "Int32",
+      "size": null,
+      "entityId": null,
+      "isRequired": true,
+      "enumId": null,
+      "isSystem": false,
+      "properties": {}
+    }
+  ],
+  "properties": {}
+}
