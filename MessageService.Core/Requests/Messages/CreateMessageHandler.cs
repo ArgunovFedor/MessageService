@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Aeb.DigitalPlatform.Infrastructure;
@@ -28,6 +29,9 @@ public class CreateMessageHandler : BaseRequestHandler<CreateMessage, MessageMod
     public override async Task<MessageModel> HandleAsync(CreateMessage request, CancellationToken cancellationToken)
     {
         var message = _mapper.Map<CreateMessage, Message>(request);
+        message.CreatedOn = DateTime.UtcNow;
+        message.ModifiedOn = DateTime.UtcNow;
+        message.Id = Guid.NewGuid();
         _messageRepository.AddMessage(message);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 

@@ -13,6 +13,6 @@ public class UnitOfWork : IUnitOfWork
         _dataContext = dataContext;
     }
 
-    public Task SaveChangesAsync(CancellationToken cancellationToken = new()) =>
-        _dataContext.SaveChangesAsync(cancellationToken);
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = new()) =>
+        await _dataContext.SaveChangesAsync(cancellationToken);
 }

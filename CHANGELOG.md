@@ -6,8 +6,9 @@
 
 ## [Unreleased]()
 ### Добавлено
-
+* Добавлена сущность Message
+* Репозиторий MessageWithoutOrmRepository
 ### Изменено
 
 ### Удалено
-
+* В методах create, update удалены лишние поля

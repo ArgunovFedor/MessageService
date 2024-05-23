@@ -11,14 +11,6 @@ namespace MessageService.Core.Requests.Messages;
 
 public class CreateMessage : IRequest<MessageModel>
 {
-    [DisplayName("")]
-    public DateTime CreatedOn { get; set; }
-    [DisplayName("")]
-    public DateTime ModifiedOn { get; set; }
-    [DisplayName("")]
-    public Guid? CreatedBy { get; set; }
-    [DisplayName("")]
-    public Guid? ModifiedBy { get; set; }
     [DisplayName("Texts")]
     public string Text { get; set; }
     [DisplayName("Номер сообщения")]

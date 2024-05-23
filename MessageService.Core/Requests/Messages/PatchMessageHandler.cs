@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MessageService.Core.Repositories;
@@ -39,6 +40,7 @@ public class PatchMessageHandler : BaseRequestHandler<PatchMessage, MessageModel
         var obj = _mapper.Map<Message, MessageModel>(message);
         request.Content.ApplyTo(obj);
         _mapper.Map(obj, message);
+        message.ModifiedOn = DateTime.UtcNow;
         _messageRepository.UpdateMessage(message);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         return obj;

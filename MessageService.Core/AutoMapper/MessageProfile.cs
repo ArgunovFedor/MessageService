@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using MessageService.Core.Entities;
 using MessageService.Core.Requests.Messages;
 using MessageService.Abstractions.Messages;

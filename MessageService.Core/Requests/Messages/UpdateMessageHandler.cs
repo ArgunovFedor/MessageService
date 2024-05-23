@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MessageService.Core.Repositories;
@@ -36,6 +37,7 @@ public class UpdateMessageHandler : BaseRequestHandler<UpdateMessage, MessageMod
         }
 
         _mapper.Map(request, message);
+        message.ModifiedOn = DateTime.UtcNow;
         _messageRepository.UpdateMessage(message);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
