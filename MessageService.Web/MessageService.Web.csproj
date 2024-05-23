@@ -40,8 +40,4 @@
     <ProjectReference Include="..\MessageService.Data\MessageService.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers" />
-  </ItemGroup>
-
 </Project>

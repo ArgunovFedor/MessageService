@@ -74,13 +74,10 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseHttpMetrics();
 
-app.UseCors();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.MapControllers();
 app.MapMetrics();
+
+app.UseWebSockets();
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>

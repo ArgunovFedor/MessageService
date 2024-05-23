@@ -16,7 +16,6 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace MessageService.Web.Controllers;
 
 [ServiceFilter(typeof(ApiExceptionFilterAttribute))]
-// [Authorize]
 [Route("api/Message")]
 public class MessageController : ControllerBase
 {
