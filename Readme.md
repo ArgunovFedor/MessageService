@@ -33,3 +33,7 @@
 - Ведение логов, чтобы по ним можно было понять текущее состояние работы приложения (детальность логов на свое усмотрение, при этом качество логирования является одним из критериев оценки выполненного тестового задания)
 
 ***Приложение нужно оформить в виде docker-образов и выложить на docker-hub.***
+
+*** Использованные ресурсы
+- https://github.com/slthomason/StartupHakk/tree/main/92_Implementing_WebSocket_Client_Server_ASPNETCORE
+- https://csharp.webdelphi.ru/mnogopotochnost-v-c-sposoby-sinxronizacii-potokov/

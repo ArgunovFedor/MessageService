@@ -6,6 +6,7 @@ using Aeb.DigitalPlatform.Infrastructure.ExceptionHandlers;
 using MediatR;
 using MessageService.Abstractions.Messages;
 using MessageService.Core.Requests.Messages;
+using MessageService.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -16,10 +17,11 @@ namespace MessageService.Web.Controllers;
 public class MainController: ControllerBase
 {
     private readonly IMediator _mediator;
-
-    public MainController(IMediator mediator)
+    private readonly IWebSocketFacade<MessageModel> WebSocketFacade;
+    public MainController(IMediator mediator, IWebSocketFacade<MessageModel> webSocketFacade)
     {
         _mediator = mediator;
+        WebSocketFacade = webSocketFacade;
     }
     
     /// <summary>
@@ -35,7 +37,7 @@ public class MainController: ControllerBase
         // сервис обрабатывает каждое сообщение, записывает его в базу 
         var result =  await _mediator.Send(createMessage);
         // и перенаправляет его второму клиенту по веб-сокету
-
+        await WebSocketFacade.SendAsync(result);
         return result;
     }
 
