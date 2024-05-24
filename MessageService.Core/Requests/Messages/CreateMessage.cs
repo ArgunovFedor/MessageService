@@ -9,10 +9,6 @@ using MediatR;
 
 namespace MessageService.Core.Requests.Messages;
 
-public class CreateMessage : IRequest<MessageModel>
+public class CreateMessage : CreateMessageModel, IRequest<MessageModel>
 {
-    [DisplayName("Texts")]
-    public string Text { get; set; }
-    [DisplayName("Номер сообщения")]
-    public int Number { get; set; }
 }

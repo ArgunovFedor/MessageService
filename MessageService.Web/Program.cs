@@ -77,8 +77,6 @@ app.UseHttpMetrics();
 app.MapControllers();
 app.MapMetrics();
 
-app.UseWebSockets();
-
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

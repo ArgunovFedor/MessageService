@@ -6,10 +6,9 @@ namespace MessageService.Abstractions.Messages;
 
 public class CreateMessageModel
 {
-    public DateTime CreatedOn { get; set; }
-    public DateTime ModifiedOn { get; set; }
-    public Guid? CreatedBy { get; set; }
-    public Guid? ModifiedBy { get; set; }
+   
+    [DisplayName("Texts")]
     public string Text { get; set; }
+    [DisplayName("Номер сообщения")]
     public int Number { get; set; }
 }
