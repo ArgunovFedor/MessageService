@@ -29,8 +29,9 @@ public class CreateMessageHandler : BaseRequestHandler<CreateMessage, MessageMod
     public override async Task<MessageModel> HandleAsync(CreateMessage request, CancellationToken cancellationToken)
     {
         var message = _mapper.Map<CreateMessage, Message>(request);
-        message.CreatedOn = DateTime.UtcNow;
-        message.ModifiedOn = DateTime.UtcNow;
+        var utcNow = DateTime.UtcNow;
+        message.CreatedOn = utcNow;
+        message.ModifiedOn = utcNow;
         message.Id = Guid.NewGuid();
         _messageRepository.AddMessage(message);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
