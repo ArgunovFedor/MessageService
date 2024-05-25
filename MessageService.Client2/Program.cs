@@ -1,6 +1,9 @@
 using System.Net;
 using System.Net.WebSockets;
 using System.Text;
+using MessageService.Abstractions.Messages;
+using Newtonsoft.Json;
+
 // второй клиент при считывает по веб-сокету поток сообщений от сервера и отображает их в порядке прихода с сервера (с отображением метки времени и порядкового номера)
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,21 +17,19 @@ app.Map("/ws", async context =>
 {
     if (context.WebSockets.IsWebSocketRequest)
     {
-        var curName = context.Request.Query["name"];
-        var stream = context.Request.Body;
-        
         using var ws = await context.WebSockets.AcceptWebSocketAsync();
-
+        var curName = "test";
         connections.Add(ws);
-
-        await Broadcast($"{curName} joined the room");
         await Broadcast($"{connections.Count} users connected");
         await ReceiveMessage(ws,
             async (result, buffer) =>
             {
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
-                    string message = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                    var data = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                    // Десериализация JSON
+                    var message = JsonConvert.DeserializeObject<MessageModel>(data);
+                    Console.WriteLine($"{DateTime.UtcNow} - {message.Text} {message.Number}");
                     await Broadcast(curName + ": " + message);
                 }
                 else if (result.MessageType == WebSocketMessageType.Close || ws.State == WebSocketState.Aborted)

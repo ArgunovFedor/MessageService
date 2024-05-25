@@ -2,6 +2,7 @@
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Aeb.DigitalPlatform.Infrastructure;
 
 namespace MessageService.Core.Services;
 
@@ -29,14 +30,28 @@ public class ClientWebSocketProxy : IClientWebSocketProxy
                     mutex.ReleaseMutex(); // Освобождаем мьютекс после создания экземпляра
                 }
             }
-
+            else
+            {
+                if (_instance.State != WebSocketState.Connecting && _instance.State != WebSocketState.Open && _instance.State != WebSocketState.None)
+                {
+                    mutex.WaitOne(); 
+                    try
+                    {
+                        _instance = new ClientWebSocket();
+                    }
+                    finally
+                    {
+                        mutex.ReleaseMutex(); // Освобождаем мьютекс после создания экземпляра
+                    }
+                }
+            }
             return _instance;
         }
     }
 
     public async Task<ClientWebSocket> GetWebSocketClient()
     {
-        if (ClientWebSocket.State != WebSocketState.Open || ClientWebSocket.State != WebSocketState.Connecting)
+        if (ClientWebSocket.State == WebSocketState.None)
         {
             await ConnectToServer(ClientWebSocket, $"ws://localhost:6969/ws?name=Test");
         }
@@ -52,7 +67,7 @@ public class ClientWebSocketProxy : IClientWebSocketProxy
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            throw new ServiceException("Ошибка подключения к прокси серверу");
         }
     }
 }
