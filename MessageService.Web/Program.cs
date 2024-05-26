@@ -24,7 +24,6 @@ builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
-var env = builder.Environment;
 
 var appOptions = configuration.GetSection("App").Get<AppOptions>();
 
@@ -60,8 +59,7 @@ services.AddSwaggerGen(options => options.ConfigureSwagger("MessageService"));
 services.AddSwaggerGenNewtonsoftSupport();
 
 // Register custom services below
-
-
+services.AddJaeger(configuration);
 
 var app = builder.Build();
 

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 namespace MessageService.Data;
 
@@ -50,6 +51,8 @@ public static class DataServicesExtensions
                     throw new InvalidOperationException($"Unsupported value in field {nameof(DatabaseEngine)}");
             }
         });
+        services.AddScoped<NpgsqlConnection>();
+        services.AddScoped<NpgsqlTransaction>();
         return services;
     }
 }

@@ -1,6 +1,5 @@
-using System;
 using MessageService.Abstractions.Messages;
-using MessageService.Client;
+using MessageService.Client.Infrastructure;
 using MessageService.Connector;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Newtonsoft.Json;
@@ -35,6 +34,9 @@ services.AddFluentValidationRulesToSwagger();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen(options => options.ConfigureSwagger("MessageService"));
 services.AddSwaggerGenNewtonsoftSupport();
+
+// Register custom services below
+services.AddJaeger(configuration);
 
 var app = builder.Build();
 

@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace MessageService.Client;
+namespace MessageService.Client.Infrastructure;
 
 public static class SwaggerGenExtensions
 {
@@ -50,7 +50,7 @@ public static class SwaggerGenExtensions
         // Xml Documentation for Release configuration
         var includeXmlFiles = new[]
         {
-            $"{serviceName}.Client.xml"
+            $"{serviceName}.Client3.xml"
         };
 
         foreach (var xmlFile in includeXmlFiles)

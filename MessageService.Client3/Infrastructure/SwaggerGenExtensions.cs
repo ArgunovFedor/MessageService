@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace MessageService.Client3;
+namespace MessageService.Client3.Infrastructure;
 
 public static class SwaggerGenExtensions
 {

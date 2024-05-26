@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace MessageService.Client;
+namespace MessageService.Client.Infrastructure;
 
 public class SwaggerGenDuplicateSchemaFilter  : ISchemaFilter
 {
