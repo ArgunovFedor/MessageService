@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace MessageService.Web.Infrastructure;
+namespace MessageService.Client3;
 
 public static class SwaggerGenExtensions
 {
@@ -54,9 +50,7 @@ public static class SwaggerGenExtensions
         // Xml Documentation for Release configuration
         var includeXmlFiles = new[]
         {
-            $"{serviceName}.Abstractions.xml",
-            $"{serviceName}.Core.xml",
-            $"{serviceName}.Web.xml"
+            $"{serviceName}.Client3.xml"
         };
 
         foreach (var xmlFile in includeXmlFiles)
