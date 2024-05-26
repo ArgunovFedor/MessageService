@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace MessageService.Data.Repositories;
 
 /// <inheritdoc/>
-public class MessageRepository : IMessageRepository
+public class MessageRepository 
 {
     private readonly DbSet<Message> _dbSet;
 

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MessageService.Data.Repositories;
 
-public class MessageWithoutOrmRepository
+public class MessageWithoutOrmRepository: IMessageRepository
 {
     private readonly DbSet<Message> _dbSet;
     private readonly DataContext _dataContext;
@@ -34,9 +34,15 @@ public class MessageWithoutOrmRepository
                 {message.Text});");
     }
 
-    public void DeleteMessage(Message message) => throw new NotImplementedException();
+    public void DeleteMessage(Message message) =>
+        _dataContext.Database.ExecuteSqlInterpolated(
+            $@"DELETE FROM ""Message""
+                WHERE ""Id"" = {message.Id}");
 
-    public void UpdateMessage(Message message) => throw new NotImplementedException();
+    public void UpdateMessage(Message message) =>
+        _dbSet.FromSqlInterpolated(
+            $@"SUPDATE ""Message"" SET ""ModifiedOn"" = {DateTime.UtcNow}, ""Number"" = {message.Number}, ""Text"" = {message.Text}
+            WHERE ""Id"" = {message.Id}");
 
     public Task<Message> GetMessageAsync(Guid id, CancellationToken cancellationToken = default)
     {
@@ -48,7 +54,22 @@ public class MessageWithoutOrmRepository
         return message;
     }
 
-    public Task<(IEnumerable<Message>, int)> GetMessagesPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+    public async Task<(IEnumerable<Message>, int)> GetMessagesPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken = default)
+    {
+        var count = _dbSet.Count();
+        var message = await _dbSet.FromSqlInterpolated(
+            $@"SELECT *
+                FROM ""Message"" AS m
+                LIMIT {pageSize} OFFSET {pageIndex}""")
+            .ToListAsync(cancellationToken: cancellationToken);
+        return (message, count);
+    }
 
-    public Task<IEnumerable<Message>> GetMessagesListAsync(CancellationToken cancellationToken = default) => throw new NotImplementedException();
+    public async Task<IEnumerable<Message>> GetMessagesListAsync(CancellationToken cancellationToken = default)
+    {
+        var message = await _dbSet.FromSqlInterpolated(
+            $@"SELECT *
+                FROM ""Message""").ToListAsync(cancellationToken: cancellationToken);
+        return message;
+    }
 }
