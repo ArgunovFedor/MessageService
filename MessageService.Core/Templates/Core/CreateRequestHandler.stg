@@ -2,16 +2,16 @@ main(model) ::= <<
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
 using $model.Solution.Namespace$.Core.Repositories;
 using $model.Solution.Namespace$.Core.Entities;
-using Aeb.UnitOfWork.Abstractions;
+
 using MediatR;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
 
-public class Create$model.Entity.Name$Handler : BaseRequestHandler<Create$model.Entity.Name$, $model.Entity.Name$Model>
+public class Create$model.Entity.Name$Handler : IRequestHandler<Create$model.Entity.Name$, $model.Entity.Name$Model>
 {
 $if(model.Entity.Properties.Data)$
     private readonly I$model.Entity.Name$Repository _$model.Entity.NameLower$Repository;
@@ -42,7 +42,7 @@ $else$
 $endif$
 
 $if(model.Entity.Properties.Data)$
-    public override async Task<$model.Entity.Name$Model> HandleAsync(Create$model.Entity.Name$ request, CancellationToken cancellationToken)
+    public async Task<$model.Entity.Name$Model> Handle(Create$model.Entity.Name$ request, CancellationToken cancellationToken)
     {
         var $model.Entity.NameLower$ = _mapper.Map<Create$model.Entity.Name$, $model.Entity.Name$>(request);
         _$model.Entity.NameLower$Repository.Add$model.Entity.Name$($model.Entity.NameLower$);
@@ -53,7 +53,7 @@ $if(model.Entity.Properties.Data)$
         return _mapper.Map<$model.Entity.Name$, $model.Entity.Name$Model>($model.Entity.NameLower$);
     }
 $else$
-    public override async Task<$model.Entity.Name$Model> HandleAsync(Create$model.Entity.Name$ request, CancellationToken cancellationToken)
+    public async Task<$model.Entity.Name$Model> Handle(Create$model.Entity.Name$ request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

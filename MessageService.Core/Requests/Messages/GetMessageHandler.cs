@@ -7,12 +7,12 @@ using MessageService.Core.Repositories;
 using MessageService.Core.Entities;
 using MessageService.Core.Infrastructure;
 using MessageService.Abstractions.Messages;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MediatR;
 
 namespace MessageService.Core.Requests.Messages;
 
-public class GetMessageHandler : BaseRequestHandler<GetMessage, MessageModel>
+public class GetMessageHandler : IRequestHandler<GetMessage, MessageModel>
 {
     private readonly IMessageRepository _messageRepository;
     private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ public class GetMessageHandler : BaseRequestHandler<GetMessage, MessageModel>
         _mapper = mapper;
     }
 
-    public override async Task<MessageModel> HandleAsync(GetMessage request, CancellationToken cancellationToken)
+    public async Task<MessageModel> Handle(GetMessage request, CancellationToken cancellationToken)
     {                       
         var message = await _messageRepository
             .GetMessageAsync(request.Id, cancellationToken);

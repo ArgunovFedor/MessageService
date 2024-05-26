@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Aeb.DigitalPlatform.Infrastructure;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace MessageService.Core.Infrastructure.Options;

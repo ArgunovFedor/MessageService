@@ -1,13 +1,15 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MessageService.Core.Repositories;
-using Aeb.DigitalPlatform.Infrastructure;
-using Aeb.UnitOfWork.Abstractions;
+
+
 using MediatR;
+using MessageService.Abstractions;
+using MessageService.Core.Infrastructure;
 
 namespace MessageService.Core.Requests.Messages;
 
-public class DeleteMessageHandler : BaseRequestHandler<DeleteMessage>
+public class DeleteMessageHandler : IRequestHandler<DeleteMessage>
 {
     private readonly IMessageRepository _messageRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -18,7 +20,7 @@ public class DeleteMessageHandler : BaseRequestHandler<DeleteMessage>
         _messageRepository = messageRepository;
         _unitOfWork = unitOfWork;
     }
-    public override async Task<Unit> HandleAsync(DeleteMessage request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteMessage request, CancellationToken cancellationToken)
     {              
         var message = await _messageRepository
             .GetMessageAsync(request.Id, cancellationToken);

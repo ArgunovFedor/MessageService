@@ -1,5 +1,5 @@
 main(model) ::= <<
-using Aeb.DigitalPlatform.Infrastructure;
+
 using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
 using MediatR;
 

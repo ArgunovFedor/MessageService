@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MessageService.Core.Infrastructure.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;

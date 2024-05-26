@@ -1,6 +1,7 @@
-﻿using Aeb.DigitalPlatform.Infrastructure;
+﻿
 using MessageService.Abstractions.Messages;
 using MediatR;
+using MessageService.Abstractions;
 
 namespace MessageService.Core.Requests.Messages;
 

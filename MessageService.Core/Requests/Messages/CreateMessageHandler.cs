@@ -2,16 +2,17 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MessageService.Abstractions.Messages;
 using MessageService.Core.Repositories;
 using MessageService.Core.Entities;
-using Aeb.UnitOfWork.Abstractions;
+
 using MediatR;
+using MessageService.Abstractions;
 
 namespace MessageService.Core.Requests.Messages;
 
-public class CreateMessageHandler : BaseRequestHandler<CreateMessage, MessageModel>
+public class CreateMessageHandler : IRequestHandler<CreateMessage, MessageModel>
 {
     private readonly IMessageRepository _messageRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +27,7 @@ public class CreateMessageHandler : BaseRequestHandler<CreateMessage, MessageMod
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public override async Task<MessageModel> HandleAsync(CreateMessage request, CancellationToken cancellationToken)
+    public async Task<MessageModel> Handle(CreateMessage request, CancellationToken cancellationToken)
     {
         var message = _mapper.Map<CreateMessage, Message>(request);
         var utcNow = DateTime.UtcNow;

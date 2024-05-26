@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using $model.Solution.Namespace$.Core.Repositories;
 using $model.Solution.Namespace$.Core.Entities;
 using $model.Solution.Namespace$.Core.Infrastructure;
@@ -15,7 +15,7 @@ using MediatR;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
 
-public class Get$model.Entity.PluralName$Handler : BaseRequestHandler<Get$model.Entity.PluralName$, IEnumerable<$model.Entity.Name$Model>\>
+public class Get$model.Entity.PluralName$Handler : IRequestHandler<Get$model.Entity.PluralName$, IEnumerable<$model.Entity.Name$Model>\>
 {
 $if(model.Entity.Properties.Data)$
     private readonly I$model.Entity.Name$Repository _$model.Entity.NameLower$Repository;
@@ -44,13 +44,13 @@ $else$
 $endif$
 
 $if(model.Entity.Properties.Data)$
-    public override async Task<IEnumerable<$model.Entity.Name$Model>\> HandleAsync(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<$model.Entity.Name$Model>\> Handle(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
     {               
         var items = await _$model.Entity.NameLower$Repository.Get$model.Entity.PluralName$ListAsync(cancellationToken);
         return items.Select(_mapper.Map<$model.Entity.Name$, $model.Entity.Name$Model>);
     }
 $else$
-    public override async Task<IEnumerable<$model.Entity.Name$Model>\> HandleAsync(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<$model.Entity.Name$Model>\> Handle(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

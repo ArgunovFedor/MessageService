@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Aeb.DigitalPlatform.Infrastructure;
-using Aeb.DigitalPlatform.Infrastructure.ExceptionHandlers;
 using MediatR;
 using MessageService.Abstractions.Messages;
 using MessageService.Core.Requests.Messages;
 using MessageService.Core.Services;
+using MessageService.Web.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 

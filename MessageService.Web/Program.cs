@@ -1,4 +1,4 @@
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MessageService.Core;
 using MessageService.Core.Infrastructure.Options;
 using MessageService.Data;
@@ -15,7 +15,11 @@ using Newtonsoft.Json.Serialization;
 using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseDigitalPlatformInfrastructure(args);
+builder.Host.ConfigureAppConfiguration((context, configurationBuilder) =>
+    {
+        configurationBuilder.Configure(context, args);
+    }
+);
 builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true);
 
 var services = builder.Services;
@@ -37,7 +41,6 @@ services.AddCoreServices();
 
 // Web
 services.AddHttpContextAccessor();
-services.AddDigitalPlatformAuthentication(configuration);
 services.AddNamedCorsPolicies(configuration);
 services.AddControllers()
     .AddNewtonsoftJson(options =>
@@ -45,8 +48,7 @@ services.AddControllers()
         options.SerializerSettings.ContractResolver =
             new CamelCasePropertyNamesContractResolver();
         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-    })
-    .AddDigitalPlatformLoginEndpoint(configuration);
+    });
 services.AddScoped<ApiExceptionFilterAttribute>();
 
 // FluentValidation
@@ -62,11 +64,6 @@ services.AddSwaggerGenNewtonsoftSupport();
 
 
 var app = builder.Build();
-
-if (!appOptions.IsSut)
-{
-    app.UseDigitalPlatformHealthChecks();
-}
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

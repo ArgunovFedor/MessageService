@@ -11,6 +11,12 @@ app.MapGet("/getMessages", async () =>
     var result = await refitClient.GetPushSoundsAsync(DateTime.UtcNow.AddMinutes(-10), DateTime.UtcNow);
     return Results.Json(result);
 });
-
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MessageService");
+    c.RoutePrefix = "swagger";
+    c.DocumentTitle = "MessageService API Docs";
+});
 
 await app.RunAsync();

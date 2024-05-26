@@ -9,7 +9,7 @@ $endif$
 using $model.Solution.Namespace$.Web.Infrastructure;
 using $model.Solution.Namespace$.Abstractions;
 using $model.Solution.Namespace$.Abstractions.$model.Entity.PluralName$;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;

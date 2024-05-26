@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MessageService.Core.Infrastructure;
 using MessageService.Core.Infrastructure.Options;
 using AutoMapper;

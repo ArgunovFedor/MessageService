@@ -2,7 +2,7 @@ main(model) ::= <<
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using AutoMapper;
 using $model.Solution.Namespace$.Core.Repositories;
 using $model.Solution.Namespace$.Core.Entities;
@@ -11,7 +11,7 @@ using MediatR;
 
 namespace $model.Solution.Namespace$.Core.Requests.$model.Entity.PluralName$;
 
-public class Get$model.Entity.PluralName$PageHandler : BaseRequestHandler<Get$model.Entity.PluralName$Page, PaginableContentModel<$model.Entity.Name$Model>\>
+public class Get$model.Entity.PluralName$PageHandler : IRequestHandler<Get$model.Entity.PluralName$Page, PaginableContentModel<$model.Entity.Name$Model>\>
 {
 $if(model.Entity.Properties.Data)$
     private readonly I$model.Entity.Name$Repository _$model.Entity.NameLower$Repository;
@@ -40,13 +40,13 @@ $else$
 $endif$
 
 $if(model.Entity.Properties.Data)$
-    public override async Task<PaginableContentModel<$model.Entity.Name$Model>\> HandleAsync(Get$model.Entity.PluralName$Page request, CancellationToken cancellationToken)
+    public async Task<PaginableContentModel<$model.Entity.Name$Model>\> Handle(Get$model.Entity.PluralName$Page request, CancellationToken cancellationToken)
     {               
         var (items, totalCount) = await _$model.Entity.NameLower$Repository.Get$model.Entity.PluralName$PageAsync(request.PageIndex, request.PageSize, cancellationToken);
         return new PaginableContentModel<$model.Entity.Name$Model>(items.Select(_mapper.Map<$model.Entity.Name$, $model.Entity.Name$Model>), totalCount, request.PageIndex);
     }
 $else$
-    public override async Task<PaginableContentModel<$model.Entity.Name$Model>\> HandleAsync(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
+    public async Task<PaginableContentModel<$model.Entity.Name$Model>\> Handle(Get$model.Entity.PluralName$ request, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

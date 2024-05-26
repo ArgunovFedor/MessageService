@@ -1,7 +1,7 @@
 ﻿using System;
-using Aeb.DigitalPlatform.Infrastructure;
+using MessageService.Abstractions;
 using MessageService.Core.Infrastructure.Options;
-using Aeb.UnitOfWork.Abstractions;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;

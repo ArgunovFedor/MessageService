@@ -5,13 +5,15 @@ using AutoMapper;
 using MessageService.Core.Repositories;
 using MessageService.Core.Entities;
 using MessageService.Abstractions.Messages;
-using Aeb.DigitalPlatform.Infrastructure;
-using Aeb.UnitOfWork.Abstractions;
+
+
 using MediatR;
+using MessageService.Abstractions;
+using MessageService.Core.Infrastructure;
 
 namespace MessageService.Core.Requests.Messages;
 
-public class PatchMessageHandler : BaseRequestHandler<PatchMessage, MessageModel>
+public class PatchMessageHandler : IRequestHandler<PatchMessage, MessageModel>
 {
     private readonly IMessageRepository _messageRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -27,7 +29,7 @@ public class PatchMessageHandler : BaseRequestHandler<PatchMessage, MessageModel
         _mapper = mapper;
     }
 
-    public override async Task<MessageModel> HandleAsync(PatchMessage request, CancellationToken cancellationToken)
+    public async Task<MessageModel> Handle(PatchMessage request, CancellationToken cancellationToken)
     {
         var message = await _messageRepository
             .GetMessageAsync(request.Id, cancellationToken: cancellationToken);

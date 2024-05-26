@@ -2,7 +2,8 @@
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Aeb.DigitalPlatform.Infrastructure;
+using MessageService.Core.Infrastructure;
+
 
 namespace MessageService.Core.Services;
 

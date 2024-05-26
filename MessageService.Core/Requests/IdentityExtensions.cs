@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Aeb.DigitalPlatform.Infrastructure;
+using MessageService.Core.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 
 namespace MessageService.Core.Requests;

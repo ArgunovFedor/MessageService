@@ -6,7 +6,7 @@ using MessageService.Core.Requests.Messages;
 using MessageService.Web.Infrastructure;
 using MessageService.Abstractions;
 using MessageService.Abstractions.Messages;
-using Aeb.DigitalPlatform.Infrastructure;
+
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
