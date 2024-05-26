@@ -3,6 +3,7 @@ using MessageService.Connector;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Prometheus;
 using Refit;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,7 +13,6 @@ builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true);
 
 var services = builder.Services;
 var configuration = builder.Configuration;
-var env = builder.Environment;
 // AppOptions
 services.AddOptions();
 // Web
@@ -39,10 +39,10 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
-//app.UseHttpMetrics();
+app.UseHttpMetrics();
 
 app.MapControllers();
-//app.MapMetrics();
+app.MapMetrics();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -57,7 +57,7 @@ app.UseReDoc(c =>
     c.DocumentTitle = "Client3 API Docs";
 });
 
-var serverUrl = "http://localhost:5000";
+var serverUrl = configuration.GetSection("MessageServiceWebUrl").Get<string>();
 var refitClient = RestService.For<IMessageRestClient>(serverUrl);
 app.MapGet("/getMessages", async () =>
     {

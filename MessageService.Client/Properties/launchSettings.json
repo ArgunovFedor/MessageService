@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "MessageService.Client3": {
+    "MessageService.Client": {
       "commandName": "Project",
       "launchBrowser": false,
       "applicationUrl": "http://localhost:7166",
