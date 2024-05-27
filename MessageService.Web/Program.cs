@@ -1,4 +1,3 @@
-
 using MessageService.Core;
 using MessageService.Core.Infrastructure.Options;
 using MessageService.Data;
@@ -9,7 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Prometheus;
@@ -20,7 +19,11 @@ builder.Host.ConfigureAppConfiguration((context, configurationBuilder) =>
         configurationBuilder.Configure(context, args);
     }
 );
-builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true);
+builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true)
+    .ConfigureLogging((_, builder) =>
+    {
+        builder.AddSentry();
+    });
 
 var services = builder.Services;
 var configuration = builder.Configuration;

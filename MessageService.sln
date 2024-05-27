@@ -19,7 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		.ruleset = .ruleset
 		CHANGELOG.md = CHANGELOG.md
-		docker-compose.Development.yaml = docker-compose.Development.yaml
 		docker-compose.yaml = docker-compose.yaml
 		README.md = README.md
 	EndProjectSection

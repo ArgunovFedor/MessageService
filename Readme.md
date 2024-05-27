@@ -37,3 +37,4 @@
 *** Использованные ресурсы
 - https://github.com/slthomason/StartupHakk/tree/main/92_Implementing_WebSocket_Client_Server_ASPNETCORE
 - https://csharp.webdelphi.ru/mnogopotochnost-v-c-sposoby-sinxronizacii-potokov/
+- https://github.com/Ramhm/sentry-setup/tree/master

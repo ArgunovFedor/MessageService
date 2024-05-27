@@ -2,12 +2,69 @@ version: "2.2"
 services:
     web:
         build:
+            args:
+              MOD: 'Debug'
             context: .
-            dockerfile: MessageService.Web/Dockerfile        
+            dockerfile: MessageService.Web/Dockerfile
+        ports:
+          - '0.0.0.0:5000:5000'
+        environment:
+          ASPNETCORE_URLS: 'http://+:5000'
+          ASPNETCORE_ENVIRONMENT: 'Staging'
+          APP_APP__DATABASE__HOST: 'postgres'
+          APP_APP__DATABASE__DATABASE: 'MessageService'
+          APP_APP__DATABASE__USERNAME: 'postgres'
+          APP_APP__DATABASE__PASSWORD: 'Qwerty123!'
+          APP_Debug__IsDebugMode: 'true'
+        depends_on:
+          - postgres
+        restart: on-failure
     postgres:
       image: postgres:15
+      environment:
+        POSTGRES_PASSWORD: 'Qwerty123!'
+      ports:
+        - '0.0.0.0:5432:5432'
+      volumes:
+        - sentry-postgres:/var/lib/postgresql/data
+    
     jaeger:
         image: jaegertracing/all-in-one:1.45
-    rabbit:
-        image: masstransit/rabbitmq:3.11
-        hostname: "rabbit"
+        ports:
+          - "5575:5575/udp"
+          - "6831:6831/udp"
+          - "6832:6832/udp"
+          - "5778:5778"
+          - "16686:16686"
+          - "14268:14268"
+          - "14250:14250"
+          - "9411:9411"
+        environment:
+          COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+    sentry:
+      image: getsentry/sentry:21.3.0
+      ports:
+        - "9000:9000"
+      environment:
+        SENTRY_SECRET_KEY: 'YOUR_SECRET_KEY'
+        SENTRY_POSTGRES_HOST: postgres
+        SENTRY_DB_USER: postgres
+        SENTRY_DB_PASSWORD: 'Qwerty123!'
+        SENTRY_REDIS_HOST: redis
+        SENTRY_TSDB: 'sentry.tsdb.redis.RedisTSDB'
+        SENTRY_EMAIL_HOST: 'smtp.example.com'
+        SENTRY_EMAIL_PORT: '587'
+        SENTRY_EMAIL_USER: 'test@example.com'
+        SENTRY_EMAIL_PASSWORD: 'test'
+        SENTRY_EMAIL_USE_TLS: 'true'
+      depends_on:
+        - postgres
+        - redis
+    redis:
+      image: redis:latest
+      volumes:
+        - sentry-redis:/data
+
+volumes:
+  sentry-postgres:
+  sentry-redis:

@@ -1,4 +1,4 @@
-FROM private-docker.aebank.lan/devops/dockerimages/master/dotnetsdk:dp-support AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
 
 ARG MOD
@@ -18,7 +18,7 @@ COPY . ./
 RUN dotnet publish MessageService.Web/MessageService.Web.csproj -c $MOD -o ../out
 
 # Build runtime image
-FROM private-docker.aebank.lan/devops/dockerimages/master/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env --chown=appuser:appuser /out .
 ENTRYPOINT ["dotnet", "MessageService.Web.dll"]
