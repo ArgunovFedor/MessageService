@@ -9,8 +9,12 @@ using Refit;
 using Swashbuckle.AspNetCore.Annotations;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://localhost:7166");
-builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true);
+builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true)
+    .ConfigureAppConfiguration((context, configurationBuilder) =>
+    {
+        configurationBuilder.Configure(context, args);
+    }
+);
 
 var services = builder.Services;
 var configuration = builder.Configuration;

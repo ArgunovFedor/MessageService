@@ -19,6 +19,34 @@ services:
         depends_on:
           - postgres
         restart: on-failure
+    client:
+      build:
+        args:
+          MOD: 'Debug'
+        context: .
+        dockerfile: MessageService.Client/Dockerfile
+      ports:
+        - '0.0.0.0:7166:7166'
+      environment:
+        ASPNETCORE_URLS: 'http://+:7166'
+        ASPNETCORE_ENVIRONMENT: 'Staging'
+        APP_Debug__IsDebugMode: 'true'
+        APP_MessageServiceWebUrl: "http://web:5000"
+      restart: on-failure
+    client3:
+      build:
+        args:
+          MOD: 'Debug'
+        context: .
+        dockerfile: MessageService.Client3/Dockerfile
+      ports:
+        - '0.0.0.0:7167:7167'
+      environment:
+        ASPNETCORE_URLS: 'http://+:7167'
+        ASPNETCORE_ENVIRONMENT: 'Staging'
+        APP_Debug__IsDebugMode: 'true'
+        APP_MessageServiceWebUrl: "http://web:5000"
+      restart: on-failure
     postgres:
       image: postgres:15
       environment:

@@ -2,12 +2,18 @@ using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using MessageService.Abstractions.Messages;
+using MessageService.Client2.Infrastructure;
 using Newtonsoft.Json;
 
 // второй клиент при считывает по веб-сокету поток сообщений от сервера и отображает их в порядке прихода с сервера (с отображением метки времени и порядкового номера)
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("http://localhost:6969");
+builder.WebHost.UseKestrel(options => options.AllowSynchronousIO = true)
+    .ConfigureAppConfiguration((context, configurationBuilder) =>
+        {
+            configurationBuilder.Configure(context, args);
+        }
+    );
 
 var app = builder.Build();
 app.UseWebSockets();
@@ -37,15 +43,17 @@ app.Map("/ws", async context =>
                     connections.Remove(ws);
                     await Broadcast($"{curName} left the room");
                     await Broadcast($"{connections.Count} users connected");
-                    await ws.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
+                    await ws.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription,
+                        CancellationToken.None);
                 }
             });
     }
     else
     {
-        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+        context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
     }
 });
+
 async Task ReceiveMessage(WebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage)
 {
     var buffer = new byte[1024 * 4];
