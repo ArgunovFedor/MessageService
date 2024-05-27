@@ -43,7 +43,6 @@ services.AddCoreServices();
 
 // Web
 services.AddHttpContextAccessor();
-services.AddNamedCorsPolicies(configuration);
 services.AddControllers()
     .AddNewtonsoftJson(options =>
     {

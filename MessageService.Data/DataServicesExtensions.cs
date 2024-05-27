@@ -51,8 +51,6 @@ public static class DataServicesExtensions
                     throw new InvalidOperationException($"Unsupported value in field {nameof(DatabaseEngine)}");
             }
         });
-        services.AddScoped<NpgsqlConnection>();
-        services.AddScoped<NpgsqlTransaction>();
         return services;
     }
 }

@@ -29,22 +29,4 @@ public static class CoreServicesExtensions
 
         return services;
     }
-
-    public static IServiceCollection AddNamedCorsPolicies(
-        this IServiceCollection services, IConfiguration configuration)
-    {
-        var appOptions = configuration.GetSection("App").Get<AppOptions>();
-        services.AddCors(options =>
-        {
-            if (appOptions.CorsPolicies == null)
-            {
-                return;
-            }
-            foreach (var (name, policy) in appOptions.CorsPolicies)
-            {
-                options.AddPolicy(name, policy);
-            }
-        });
-        return services;
-    }
 }
