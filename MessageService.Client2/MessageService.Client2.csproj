@@ -7,11 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\MessageService.Abstractions\MessageService.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Snippets\Program.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Snippets\" />
     </ItemGroup>
 
 </Project>

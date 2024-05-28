@@ -16,6 +16,7 @@ services:
           APP_APP__DATABASE__USERNAME: 'postgres'
           APP_APP__DATABASE__PASSWORD: 'Qwerty123!'
           APP_Debug__IsDebugMode: 'true'
+          APP_WebSocketServer__Url: "ws://client2:6969/ws"
         depends_on:
           - postgres
         restart: on-failure
@@ -46,6 +47,19 @@ services:
         ASPNETCORE_ENVIRONMENT: 'Staging'
         APP_Debug__IsDebugMode: 'true'
         APP_MessageServiceWebUrl: "http://web:5000"
+      restart: on-failure
+    client2:
+      build:
+        args:
+          MOD: 'Debug'
+        context: .
+        dockerfile: MessageService.Client2/Dockerfile
+      ports:
+        - '0.0.0.0:6969:6969'
+      environment:
+        ASPNETCORE_URLS: 'http://+:6969'
+        ASPNETCORE_ENVIRONMENT: 'Staging'
+        APP_Debug__IsDebugMode: 'true'
       restart: on-failure
     postgres:
       image: postgres:15
