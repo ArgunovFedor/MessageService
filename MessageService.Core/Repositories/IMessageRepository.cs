@@ -58,4 +58,6 @@ public interface IMessageRepository
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<IEnumerable<Message>> GetMessagesListAsync(CancellationToken cancellationToken = default);
+    
+    Task<IEnumerable<Message>> GetMessagesListBetweenDatesAsync(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default);
 }

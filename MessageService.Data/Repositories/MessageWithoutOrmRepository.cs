@@ -193,4 +193,38 @@ public class MessageWithoutOrmRepository: IMessageRepository
 
         return messages;
     }
+
+    public async Task<IEnumerable<Message>> GetMessagesListBetweenDatesAsync(DateTime startDate, DateTime endDate,
+        CancellationToken cancellationToken = default)
+    {
+        var messages = new List<Message>();
+
+        await using (var connection = new NpgsqlConnection(_connectionString))
+        {
+            await connection.OpenAsync(cancellationToken);
+
+            var query = @"SELECT * FROM ""Message"" WHERE ""CreatedOn"" BETWEEN @StartDate AND @EndDate";
+            await using (var command = new NpgsqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@StartDate", startDate);
+                command.Parameters.AddWithValue("@EndDate", endDate);
+                await using (var reader = await command.ExecuteReaderAsync(cancellationToken))
+                {
+                    while (await reader.ReadAsync(cancellationToken))
+                    {
+                        messages.Add(new Message
+                        {
+                            Id = reader.GetGuid(reader.GetOrdinal("Id")),
+                            Text = reader.GetString(reader.GetOrdinal("Text")),
+                            Number = reader.GetInt32(reader.GetOrdinal("Number")),
+                            CreatedOn = reader.GetDateTime(reader.GetOrdinal("CreatedOn")),
+                            ModifiedOn = reader.GetDateTime(reader.GetOrdinal("ModifiedOn"))
+                        });
+                    }
+                }
+            }
+        }
+
+        return messages;
+    }
 }

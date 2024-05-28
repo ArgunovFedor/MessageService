@@ -28,8 +28,17 @@ public class GetMessagesHandler : IRequestHandler<GetMessages, IEnumerable<Messa
     }
 
     public async Task<IEnumerable<MessageModel>> Handle(GetMessages request, CancellationToken cancellationToken)
-    {               
-        var items = await _messageRepository.GetMessagesListAsync(cancellationToken);
+    {
+        IEnumerable<Message> items = null;
+        if (request.SelectStart == null)
+        {
+            items = await _messageRepository.GetMessagesListAsync(cancellationToken);
+        }
+        else
+        {
+            items = await _messageRepository.GetMessagesListBetweenDatesAsync((DateTime)request.SelectStart, request.SelectEnd ?? DateTime.UtcNow,
+                cancellationToken);
+        }
         return items.Select(_mapper.Map<Message, MessageModel>);
     }
 }

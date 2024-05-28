@@ -51,6 +51,10 @@ public class MainController: ControllerBase
     [SwaggerOperation("GetMessages")]
     public async Task<IEnumerable<MessageModel>> GetMessagesAsync(DateTime? selectStart, DateTime? selectEnd)
     {
-        return await _mediator.Send(new GetMessages());
+        return await _mediator.Send(new GetMessages()
+        {
+            SelectStart = selectStart,
+            SelectEnd = selectEnd
+        });
     }
 }
