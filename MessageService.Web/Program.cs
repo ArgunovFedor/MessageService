@@ -33,6 +33,7 @@ var appOptions = configuration.GetSection("App").Get<AppOptions>();
 // AppOptions
 services.AddOptions();
 services.Configure<AppOptions>(configuration.GetSection("App"));
+services.Configure<WebSocketServer>(configuration.GetSection("WebSocketServer"));
 
 // DB
 services.AddApplicationDatabase(appOptions, configuration);
@@ -51,6 +52,7 @@ services.AddControllers()
         options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
     });
 services.AddScoped<ApiExceptionFilterAttribute>();
+services.AddCors();
 
 // FluentValidation
 services.AddValidatorsFromAssembly(typeof(CoreServicesExtensions).Assembly);
@@ -71,6 +73,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseHttpMetrics();
 
+app.UseCors();
+
 app.MapControllers();
 app.MapMetrics();
 
@@ -89,10 +93,10 @@ app.UseReDoc(c =>
 });
 
 // Initialize Database, run migrations etc
-using (var scope = app.Services.CreateScope())
+/*using (var scope = app.Services.CreateScope())
 {
     var databaseInitializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     databaseInitializer.SeedAsync().GetAwaiter().GetResult();
-}
+}*/
 
 app.Run();

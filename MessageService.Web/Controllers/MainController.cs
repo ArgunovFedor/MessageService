@@ -32,7 +32,6 @@ public class MainController: ControllerBase
     [SwaggerOperation("Send message")]
     public async Task<MessageModel> CreateMessageAsync([FromBody] CreateMessage createMessage)
     {
-        // TODO: добавить отправку через прокси сервер
         // сервис обрабатывает каждое сообщение, записывает его в базу 
         var result =  await _mediator.Send(createMessage);
         // и перенаправляет его второму клиенту по веб-сокету

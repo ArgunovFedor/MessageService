@@ -3,6 +3,8 @@ using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 using MessageService.Core.Infrastructure;
+using MessageService.Core.Infrastructure.Options;
+using Microsoft.Extensions.Options;
 
 
 namespace MessageService.Core.Services;
@@ -11,7 +13,12 @@ public class ClientWebSocketProxy : IClientWebSocketProxy
 {
     private static Mutex mutex = new Mutex();
     private static ClientWebSocket _instance;
+    public WebSocketServer SocketServer { get; }
 
+    public ClientWebSocketProxy(IOptions<WebSocketServer> options)
+    {
+        SocketServer = options.Value;
+    }
     private ClientWebSocket ClientWebSocket
     {
         get
@@ -33,7 +40,7 @@ public class ClientWebSocketProxy : IClientWebSocketProxy
             }
             else
             {
-                if (_instance.State != WebSocketState.Connecting && _instance.State != WebSocketState.Open && _instance.State != WebSocketState.None)
+                if (_instance.State != WebSocketState.Connecting && _instance.State != WebSocketState.Open && _instance.State != WebSocketState.None && _instance.State != WebSocketState.CloseSent)
                 {
                     mutex.WaitOne(); 
                     try
@@ -49,12 +56,11 @@ public class ClientWebSocketProxy : IClientWebSocketProxy
             return _instance;
         }
     }
-
     public async Task<ClientWebSocket> GetWebSocketClient()
     {
         if (ClientWebSocket.State == WebSocketState.None)
         {
-            await ConnectToServer(ClientWebSocket, $"ws://localhost:6969/ws?name=Test");
+            await ConnectToServer(ClientWebSocket, SocketServer.Url);
         }
 
         return await Task.FromResult(ClientWebSocket);
@@ -68,7 +74,7 @@ public class ClientWebSocketProxy : IClientWebSocketProxy
         }
         catch (Exception ex)
         {
-            throw new ServiceException("Ошибка подключения к прокси серверу");
+            throw new ServiceException($"Ошибка подключения к прокси серверу - {SocketServer.Url}");
         }
     }
 }

@@ -26,15 +26,15 @@ public class MessageWithoutOrmRepository: IMessageRepository
         _connectionString = options.Value.Database.GetConnectionString();
     }
 
-    public async void AddMessage(Message message)
+    public void AddMessage(Message message)
     {
-        await using (var connection = new NpgsqlConnection(_connectionString))
+        using (var connection = new NpgsqlConnection(_connectionString))
         {
-            await connection.OpenAsync();
+            connection.Open();
 
             var query = @"INSERT INTO ""Message"" (""Id"", ""CreatedBy"",""CreatedOn"", ""ModifiedBy"", ""ModifiedOn"", ""Number"", ""Text"") VALUES (@Column1, @Column2, @Column3, @Column4, @Column5, @Column6, @Column7)";
 
-            await using (var command = new NpgsqlCommand(query, connection))
+            using (var command = new NpgsqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Column1", message.Id);
                 command.Parameters.AddWithValue("@Column2", DBNull.Value);
@@ -44,40 +44,40 @@ public class MessageWithoutOrmRepository: IMessageRepository
                 command.Parameters.AddWithValue("@Column6", message.Number);
                 command.Parameters.AddWithValue("@Column7", message.Text);
 
-                await command.ExecuteNonQueryAsync();
+                 command.ExecuteNonQuery();
             }
         }
     }
 
-    public async void DeleteMessage(Message message)
+    public void DeleteMessage(Message message)
     {
-        await using (var connection = new NpgsqlConnection(_connectionString))
+        using (var connection = new NpgsqlConnection(_connectionString))
         {
-            await connection.OpenAsync();
+           connection.Open();
             var query = @"DELETE FROM ""Message"" WHERE ""Id"" = @Id";
 
-            await using (var command = new NpgsqlCommand(query, connection))
+            using (var command = new NpgsqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Id", message.Id);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQuery();
             }
         }
     }
 
-    public async void UpdateMessage(Message message)
+    public void UpdateMessage(Message message)
     {
-        await using (var connection = new NpgsqlConnection(_connectionString))
+        using (var connection = new NpgsqlConnection(_connectionString))
         {
-            await connection.OpenAsync();
+            connection.Open();
             var query = @"UPDATE ""Message"" SET ""ModifiedOn"" = @Column1, ""Number"" = @Column2, ""Text"" = @Column3 WHERE ""Id"" = @Id";
 
-            await using (var command = new NpgsqlCommand(query, connection))
+            using (var command = new NpgsqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Column1", message.ModifiedOn);
                 command.Parameters.AddWithValue("@Column2", message.Number);
                 command.Parameters.AddWithValue("@Column3", message.Text); 
                 command.Parameters.AddWithValue("@Id", message.Id);
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQueryAsync();
             }
         }
     }

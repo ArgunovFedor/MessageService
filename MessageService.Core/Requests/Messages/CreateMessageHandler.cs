@@ -35,7 +35,7 @@ public class CreateMessageHandler : IRequestHandler<CreateMessage, MessageModel>
         message.ModifiedOn = utcNow;
         message.Id = Guid.NewGuid();
         _messageRepository.AddMessage(message);
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        //_unitOfWork.SaveChanges();
 
         // get and return updated data
         message = await  _messageRepository.GetMessageAsync(message.Id, cancellationToken);
