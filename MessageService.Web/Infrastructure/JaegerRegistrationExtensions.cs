@@ -35,15 +35,6 @@ public static class JaegerRegistrationExtensions
                 .AddHttpClientInstrumentation(options =>
                 {
                     options.SetHttpFlavor = true;
-                    options.Filter = message =>
-                    {
-                        var requestUriHost = message.RequestUri?.Host;
-                        if (requestUriHost == null) return true;
-                        var elasticNodeUris =
-                            configuration.GetValue<string>("Serilog:WriteTo:ElasticSearch:Args:nodeUris");
-                        var elasticUris = elasticNodeUris.Split(',').Select(s => new Uri(s));
-                        return elasticUris.All(hosts => !message.RequestUri.Host.Contains(hosts.Host));
-                    };
                 });
 
             // Add optional instrumentation

@@ -36,6 +36,10 @@
         <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9"/>
         <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9"/>
         <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.0.0-rc9"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.*" />
+        <PackageReference Include="Sentry.Extensions.Logging" Version="3.20.1" />
+        <PackageReference Include="Sentry.AspNetCore" Version="3.20.1" />
+        <PackageReference Include="Sentry.Serilog" Version="3.20.1" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\MessageService.Abstractions\MessageService.Abstractions.csproj" />

@@ -16,11 +16,11 @@ services:
           APP_APP__DATABASE__USERNAME: 'postgres'
           APP_APP__DATABASE__PASSWORD: 'Qwerty123!'
           APP_Debug__IsDebugMode: 'true'
-          APP_WebSocketServer__Url: "ws://client2:6969/ws"
+          APP_WebSocketServer__Url: "ws://client:7166/ws"
           JAEGER_SERVICE_NAME: MessageService.Web
           OTEL_EXPORTER_JAEGER_AGENT_HOST: jaeger
           OTEL_EXPORTER_JAEGER_AGENT_PORT: "6831"
-          "SENTRY_DSN": "putYourSentryDsn"
+          "SENTRY_DSN": "https://75df639e0226daafcc7cb977e725ba38@o4506206023516160.ingest.us.sentry.io/4507333388271616"
         depends_on:
           - postgres
           - jaeger
@@ -41,42 +41,7 @@ services:
         JAEGER_SERVICE_NAME: MessageService.Client
         OTEL_EXPORTER_JAEGER_AGENT_HOST: jaeger
         OTEL_EXPORTER_JAEGER_AGENT_PORT: "6831"
-        "SENTRY_DSN": "putYourSentryDsn"
-      restart: on-failure
-    client3:
-      build:
-        args:
-          MOD: 'Debug'
-        context: .
-        dockerfile: MessageService.Client3/Dockerfile
-      ports:
-        - '0.0.0.0:7167:7167'
-      environment:
-        ASPNETCORE_URLS: 'http://+:7167'
-        ASPNETCORE_ENVIRONMENT: 'Staging'
-        APP_Debug__IsDebugMode: 'true'
-        APP_MessageServiceWebUrl: "http://web:5000"
-        JAEGER_SERVICE_NAME: MessageService.Client3
-        OTEL_EXPORTER_JAEGER_AGENT_HOST: jaeger
-        OTEL_EXPORTER_JAEGER_AGENT_PORT: "6831"
-        "SENTRY_DSN": "putYourSentryDsn"
-      restart: on-failure
-    client2:
-      build:
-        args:
-          MOD: 'Debug'
-        context: .
-        dockerfile: MessageService.Client2/Dockerfile
-      ports:
-        - '0.0.0.0:6969:6969'
-      environment:
-        ASPNETCORE_URLS: 'http://+:6969'
-        ASPNETCORE_ENVIRONMENT: 'Staging'
-        APP_Debug__IsDebugMode: 'true'
-        JAEGER_SERVICE_NAME: MessageService.Client2
-        OTEL_EXPORTER_JAEGER_AGENT_HOST: jaeger
-        OTEL_EXPORTER_JAEGER_AGENT_PORT: "6831"
-        "SENTRY_DSN": "putYourSentryDsn"
+        "SENTRY_DSN": "https://75df639e0226daafcc7cb977e725ba38@o4506206023516160.ingest.us.sentry.io/4507333388271616"
       restart: on-failure
     postgres:
       image: postgres:15

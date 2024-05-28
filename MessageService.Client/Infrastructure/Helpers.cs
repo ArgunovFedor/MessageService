@@ -3,7 +3,7 @@
 public static class Helpers
 {
     public static void Configure(this IConfigurationBuilder config,
-        WebHostBuilderContext context,
+        HostBuilderContext context,
         string[] args)
     {
         var environmentName = context.HostingEnvironment.EnvironmentName;
