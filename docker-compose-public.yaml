@@ -1,7 +1,7 @@
 version: "2.2"
 services:
     web:
-        image: 12345678910111213141516/test_app_c_sharp:1.0.2
+        image: 12345678910111213141516/test_app_c_sharp:1.0.3
         ports:
           - '0.0.0.0:5000:5000'
         environment:
