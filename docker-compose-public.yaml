@@ -1,7 +1,7 @@
 version: "2.2"
 services:
     web:
-        image: 12345678910111213141516/test_app_c_sharp:1.0.1
+        image: 12345678910111213141516/test_app_c_sharp:1.0.2
         ports:
           - '0.0.0.0:5000:5000'
         environment:
@@ -22,7 +22,7 @@ services:
           - jaeger
         restart: on-failure
     client:
-      image: 12345678910111213141516/test_app_c_sharp_client:1.0.1
+      image: 12345678910111213141516/test_app_c_sharp_client:1.0.2
       ports:
         - '0.0.0.0:7166:7166'
       environment:
