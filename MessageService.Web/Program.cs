@@ -93,10 +93,10 @@ app.UseReDoc(c =>
 });
 
 // Initialize Database, run migrations etc
-/*using (var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var databaseInitializer = scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>();
     databaseInitializer.SeedAsync().GetAwaiter().GetResult();
-}*/
+}
 
 app.Run();
